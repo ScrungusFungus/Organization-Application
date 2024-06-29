@@ -66,7 +66,7 @@
 					</div>
 					<div class="signup-image">
 						<figure>
-							<img src="flower.jpg" alt="sing up image">
+							<img src="images/flower.jpg" alt="sing up image">
 						</figure>
 						<a href="login.jsp" class="signup-image-link">I am already
 							member</a>
@@ -86,8 +86,11 @@
 <script type="text/javascript">
 	var status = document.getElementById("status").value;
 	if(status == "success"){
-		swal("Congrats", "Account created", "");
+		swal("Congrats", "Account created", "success").then(function(){
+			 window.location = "login.jsp";
+		});
 	}
+	
 </script>
 
 
