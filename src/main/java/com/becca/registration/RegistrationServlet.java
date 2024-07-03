@@ -12,11 +12,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 @WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	public static boolean isValid(String email) 
+    { 
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                            "[a-zA-Z0-9_+&*-]+)*@" + 
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                            "A-Z]{2,7}$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
+    } 
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -24,9 +37,11 @@ public class RegistrationServlet extends HttpServlet {
 		String uemail = request.getParameter("email");
 		String upwd = request.getParameter("pass");
 		String umobile = request.getParameter("contact");
-		
 		RequestDispatcher dispatcher = null;
 		Connection con = null;
+		
+		if(isValid(uemail)) {
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone", "root", "root");
@@ -56,5 +71,10 @@ public class RegistrationServlet extends HttpServlet {
 			}
 		}
 	}
-
+	else {
+		dispatcher = request.getRequestDispatcher("registration.jsp");
+		request.setAttribute("status", "failed");
+		dispatcher.forward(request, response);	
+	}
+	}
 }
