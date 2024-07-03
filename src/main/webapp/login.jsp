@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Sign Up Form by Colorlib</title>
+<title>Sign In Form</title>
 
 <!-- Font Icon -->
 <link rel="stylesheet"
@@ -19,7 +19,7 @@
 
 	<div class="main">
 
-		<!-- Sing in  Form -->
+
 		<section class="sign-in">
 			<div class="container">
 				<div class="signin-content">
@@ -29,7 +29,7 @@
 							account</a>
 					</div>
 					<div class="signin-form">
-						<h2 class="form-title">Sign up</h2>
+						<h2 class="form-title">Sign in</h2>
 						<form method="post" action="login" class="register-form"
 							id="login-form">
 							<div class="form-group">
