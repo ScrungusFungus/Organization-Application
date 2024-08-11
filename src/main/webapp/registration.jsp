@@ -9,6 +9,7 @@
 <!-- Font Icon -->
 <link rel="stylesheet"
 	href="fonts/material-icon/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" href="alert/dist/sweetalert.css">
 
 <!-- Main css -->
 <link rel="stylesheet" href="css/style.css">
@@ -26,7 +27,7 @@
 					<div class="signup-form">
 						<h2 class="form-title">Sign up</h2>
 					
-						<form method="post" action="register" class="register-form"
+						<form method="post" action="register" class="register-form" style="background:#FF7F50"
 							id="register-form">
 							<div class="form-group">
 								<label for="name"><i
@@ -81,7 +82,7 @@
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<link rel="stylesheet" href="alert/dist/sweetalert.css">
+	
 
 <script type="text/javascript">
 	var status = document.getElementById("status").value;

@@ -1,10 +1,3 @@
-<%
-	if(session.getAttribute("name")==null){
-		response.sendRedirect("login.jsp");
-	}
-%>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +6,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Freelancer - Start Bootstrap Theme</title>
+<title>Our Task Manager</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Font Awesome icons (free version)-->
@@ -30,6 +23,21 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body id="page-top">
+<input type="hidden" id="name" value="<%= request.getAttribute("name") %>">
+<input type="hidden" id="date" value="<%= request.getAttribute("date") %>">
+<input type="hidden" id="content" value="<%= request.getAttribute("content") %>">
+
+
+<%
+String s = (String) request.getAttribute("name");
+%>
+<%@ page import="com.becca.registration.Task" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.UUID" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+
+
 	<!-- Navigation-->
 	<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
@@ -46,8 +54,6 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#tasks">Tasks</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="logout">Logout</a></li>
 					<li class="nav-item mx-0 mx-lg-1 bg-danger"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="logout"><%=session.getAttribute("name")%></a></li>
@@ -56,15 +62,12 @@
 			</div>
 		</div>
 	</nav>
-	<!-- Masthead-->
+	
 	<header class="masthead bg-primary text-white text-center">
 		<div class="container d-flex align-items-center flex-column">
-			<!-- Masthead Avatar Image-->
 			<img class="masthead-avatar mb-5" src="assets/img/portfolio/notepad.png"
 				alt="..." />
-			<!-- Masthead Heading-->
-			<h1 class="masthead-heading text-uppercase mb-0">Welcome to your To-Do List</h1>
-			<!-- Icon Divider-->
+		
 			<div class="divider-custom divider-light">
 				<div class="divider-custom-line"></div>
 				<div class="divider-custom-icon">
@@ -72,18 +75,34 @@
 				</div>
 				<div class="divider-custom-line"></div>
 			</div>
-			<!-- Masthead Subheading-->
-			<p class="masthead-subheading font-weight-light mb-0">Organization and Success</p>
 		</div>
 	</header>
 	
-	<form action="task.jsp" style="background:#FF7F50" class="masthead-heading text-uppercase mb-0">
-		<input type="submit" value="Get started">
+	<form action ="tasks" method="post" style="background:#FF7F50" class="masthead bg-primary text-white text-center">
+		<input type="hidden" name="id" id="id">
+		<label>Task name:</label>
+		<br><input type="text" name="name" id="task-name" placeholder="task name"><br>
+		<label>Task due:</label>
+		<br><input type="text" name="date" id="task-date" placeholder="due date"><br>
+		<label>Task content:</label>
+		<br><input type="text" name="content" id="task-content" placeholder="content"><br>
+		<div class="form-group form-button">
+			<br><input type="submit" name="signup" id="signup" class="form-submit" value="Create" />
+		</div>
 	</form>
 	
-	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<section class="page-section bg-primary text-white mb-0" id="tasks">
+		<div class="container" id="list-container">
+		
+			<h2 class="page-section-heading text-center text-uppercase text-white">Tasks</h2>
+			<ul>
+    		<c:forEach var="entry" items="${taskList}">
+        	<li>${entry.key}: ${entry.value.getTitle()}</li>
+   			 </c:forEach>
+			</ul>
+		</div>
+	</section>
+	
 	<!-- Core theme JS-->
 	
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
