@@ -2,6 +2,22 @@
 	if(session.getAttribute("name")==null){
 		response.sendRedirect("login.jsp");
 	}
+
+%>
+
+<%@ page import="com.becca.registration.Task" %>
+<%@ page import="com.becca.registration.ApplicationService" %>
+<%@ page import="com.becca.registration.ApplicationInMemory" %>
+<%@ page import="com.becca.registration.ApplicationDao" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.UUID" %>
+<%
+ApplicationService tasks;
+tasks = new ApplicationInMemory();
+tasks = new ApplicationDao();
+Map<UUID, Task> taskMap = tasks.readTasks();
+request.setAttribute("taskList", taskMap);
+session.setAttribute("taskList", taskMap);
 %>
 
 

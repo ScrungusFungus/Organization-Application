@@ -47,8 +47,6 @@ public class AddTaskServlet extends HttpServlet {
 		RequestDispatcher dispatcher = null;
         String id = (String) request.getAttribute("id");
         
-        Task task = this.tasks.readTask(id);
-        
         Map<UUID, Task> taskMap = this.tasks.readTasks();
         PrintWriter writer = response.getWriter();
         
@@ -64,7 +62,6 @@ public class AddTaskServlet extends HttpServlet {
         dataMap.put("key2", "value2");
         dataMap.put("key3", "value3");
 
-        // Add the Map to the request object
         request.setAttribute("dataMap", dataMap);
         
         request.setAttribute("taskList", taskMap);

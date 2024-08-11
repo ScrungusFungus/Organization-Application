@@ -23,14 +23,8 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body id="page-top">
-<input type="hidden" id="name" value="<%= request.getAttribute("name") %>">
-<input type="hidden" id="date" value="<%= request.getAttribute("date") %>">
 <input type="hidden" id="content" value="<%= request.getAttribute("content") %>">
 
-
-<%
-String s = (String) request.getAttribute("name");
-%>
 <%@ page import="com.becca.registration.Task" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.UUID" %>
@@ -97,18 +91,12 @@ String s = (String) request.getAttribute("name");
 			<h2 class="page-section-heading text-center text-uppercase text-white">Tasks</h2>
 			<ul>
     		<c:forEach var="entry" items="${taskList}">
-        	<li>${entry.key}: ${entry.value.getTitle()}</li>
+        	<li>${entry.key}: ${entry.value.getTitle()}<a href=delete?id=${entry.key}>Delete</a></li>
    			 </c:forEach>
 			</ul>
 		</div>
 	</section>
-	
-	<!-- Core theme JS-->
-	
-	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-	<!-- * *                               SB Forms JS                               * *-->
-	<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+
 	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 </html>

@@ -35,6 +35,11 @@ import java.sql.SQLException;
 public class LoginServlet extends HttpServlet { 
 
     private static final long serialVersionUID = 1L; 
+    ApplicationService tasks;
+    
+    public LoginServlet() {
+    	super();
+    }
 
  
 

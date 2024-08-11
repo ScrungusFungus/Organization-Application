@@ -43,4 +43,24 @@
     <servlet-name>TaskServlet</servlet-name>
     <url-pattern>/TaskServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteTaskServlet</display-name>
+    <servlet-name>DeleteTaskServlet</servlet-name>
+    <servlet-class>com.becca.registration.DeleteTaskServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteTaskServlet</servlet-name>
+    <url-pattern>/DeleteTaskServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayTaskServlet</display-name>
+    <servlet-name>DisplayTaskServlet</servlet-name>
+    <servlet-class>com.becca.registration.DisplayTaskServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayTaskServlet</servlet-name>
+    <url-pattern>/DisplayTaskServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

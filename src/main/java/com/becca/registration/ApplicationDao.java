@@ -128,11 +128,15 @@ public class ApplicationDao implements ApplicationService {
     public void deleteTask(String id) {
         try {
             // get connection to database
-            Connection connection = DBConnection.getConnectionToDatabase();
+        	Class.forName("com.mysql.cj.jdbc.Driver"); 
+        	Connection con = null;
+        	
+        	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone", "root", "root"); 
+
 
             // write select query to get the Task
-            String sql = "delete from Tasks where uuid=?;";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            String sql = "delete from tasks where id=?;";
+            PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, UUID.fromString(id).toString());
 
             // execute query, delete resultset
