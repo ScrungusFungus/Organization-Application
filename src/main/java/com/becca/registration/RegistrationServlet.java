@@ -35,7 +35,7 @@ public class RegistrationServlet extends HttpServlet {
 
 private static final long serialVersionUID = 1L; 
 
- 
+ ApplicationService user = new ApplicationDao();
 
 public static boolean isValid(String email)  
 
@@ -49,7 +49,6 @@ public static boolean isValid(String email)
 
                             "A-Z]{2,7}$";  
 
- 
 
         Pattern pat = Pattern.compile(emailRegex);  
 

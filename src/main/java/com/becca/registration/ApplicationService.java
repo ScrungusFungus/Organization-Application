@@ -16,5 +16,9 @@ public interface ApplicationService {
     public void deleteTask(String id);
 
     public void createOrUpdateTask(Task Task);
+    
+    public void createUser(String name, String email, String pass, String contact);
+    
+    public void loginUser(String email, String pass);
 
 }

@@ -89,11 +89,8 @@
 		<div class="container" id="list-container">
 		
 			<h2 class="page-section-heading text-center text-uppercase text-white">Tasks</h2>
-			<ul>
-    		<c:forEach var="entry" items="${taskList}">
-        	<li>${entry.key}: ${entry.value.getTitle()}<a href=delete?id=${entry.key}>Delete</a></li>
-   			 </c:forEach>
-			</ul>
+			
+			<h1><%= request.getAttribute("display") %></h1>
 		</div>
 	</section>
 

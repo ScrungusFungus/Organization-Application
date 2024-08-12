@@ -93,7 +93,7 @@ session.setAttribute("taskList", taskMap);
 		</div>
 	</header>
 	
-	<form action="task.jsp" style="background:#FF7F50" class="masthead-heading text-uppercase mb-0">
+	<form action="control" style="background:#FF7F50" class="masthead-heading text-uppercase mb-0">
 		<input type="submit" value="Get started">
 	</form>
 	

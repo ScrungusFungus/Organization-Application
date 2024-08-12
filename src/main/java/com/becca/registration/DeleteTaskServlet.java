@@ -30,8 +30,9 @@ public class DeleteTaskServlet extends HttpServlet {
 		String id = (String) request.getParameter("id");
 		tasks.deleteTask(id);
 		Map<UUID, Task> taskMap = this.tasks.readTasks();
+		request.setAttribute("id", id);
 		request.setAttribute("taskList", taskMap);
-		dispatcher = request.getRequestDispatcher("task.jsp");
+		dispatcher = request.getRequestDispatcher("control");
 		dispatcher.forward(request, response);
 	}
 

@@ -63,4 +63,14 @@
     <servlet-name>DisplayTaskServlet</servlet-name>
     <url-pattern>/DisplayTaskServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ControllerServlet</display-name>
+    <servlet-name>ControllerServlet</servlet-name>
+    <servlet-class>com.becca.registration.ControllerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/ControllerServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

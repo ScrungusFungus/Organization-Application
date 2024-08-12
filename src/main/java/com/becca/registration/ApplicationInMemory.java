@@ -47,4 +47,16 @@ public class ApplicationInMemory implements ApplicationService {
         }
     }
 
+	@Override
+	public void createUser(String name, String email, String pass, String contact) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void loginUser(String email, String pass) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

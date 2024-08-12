@@ -17,17 +17,15 @@ public class ApplicationDao implements ApplicationService {
         Map<UUID, Task> tasks = new LinkedHashMap<UUID, Task>();
 
         try {
-            // get connection to database
+            
         	Class.forName("com.mysql.cj.jdbc.Driver"); 
         	Connection con = null;
         	
         	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone", "root", "root"); 
 
-            // write select query to get all the Task
             String sql = "select * from tasks;";
             PreparedStatement statement = con.prepareStatement(sql);
 
-            // execute query, get resultset and return User info
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 task = new Task();
@@ -48,18 +46,15 @@ public class ApplicationDao implements ApplicationService {
     public Task readTask(String id) {
         Task task = null;
         try {
-            // get connection to database
         	Class.forName("com.mysql.cj.jdbc.Driver"); 
         	Connection con = null;
         	
         	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone", "root", "root"); 
 
-            // write select query to get the Task
             String sql = "select * from tasks where id=?";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, id);
 
-            // execute query, get resultset and return Task info
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 task = new Task();
@@ -79,13 +74,12 @@ public class ApplicationDao implements ApplicationService {
 
     public void createTask(Task Task) {
         try {
-            // get connection to database
+
         	Class.forName("com.mysql.cj.jdbc.Driver"); 
         	Connection con = null;
         	
         	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone", "root", "root"); 
 
-            // write select query to get the Task
             String sql = "insert into tasks (id, name, date, content) values (?, ?, ?, ?);";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, Task.getId().toString());
@@ -93,7 +87,6 @@ public class ApplicationDao implements ApplicationService {
             statement.setString(3, Task.getDate());
             statement.setString(4, Task.getContent());
 
-            // execute query, update resultset
             statement.execute();
 
         } catch (SQLException exception) {
@@ -105,17 +98,15 @@ public class ApplicationDao implements ApplicationService {
 
     public void updateTask(Task Task) {
         try {
-            // get connection to database
+
             Connection connection = DBConnection.getConnectionToDatabase();
 
-            // write select query to get the Task
             String sql = "update Tasks set title=?, content=? where uuid=?;";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, Task.getTitle());
             statement.setString(2, Task.getContent());
             statement.setString(3, Task.getId().toString());
 
-            // execute query, update resultset
             statement.execute();
 
         } catch (SQLException exception) {
@@ -127,19 +118,16 @@ public class ApplicationDao implements ApplicationService {
 
     public void deleteTask(String id) {
         try {
-            // get connection to database
+
         	Class.forName("com.mysql.cj.jdbc.Driver"); 
         	Connection con = null;
         	
         	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone", "root", "root"); 
 
-
-            // write select query to get the Task
             String sql = "delete from tasks where id=?;";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, UUID.fromString(id).toString());
 
-            // execute query, delete resultset
             statement.execute();
 
         } catch (SQLException exception) {
@@ -158,5 +146,51 @@ public class ApplicationDao implements ApplicationService {
             updateTask(Task);
         }
     }
+
+	@Override
+	public void createUser(String name, String email, String pass, String contact) {
+		Connection con = null;
+		try { 
+
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
+        	
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone", "root", "root"); 
+			PreparedStatement pst = con.prepareStatement("insert into users(uname,upwd,uemail,emobile) values(?,?,?,?)"); 
+			pst.setString(1, name); 
+
+			pst.setString(2, email); 
+
+			pst.setString(3, pass); 
+
+			pst.setString(4, contact); 
+
+
+			}catch(Exception e) { 
+
+			e.printStackTrace(); 
+
+			}finally { 
+
+			try { 
+
+			con.close(); 
+
+			} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block 
+
+			e.printStackTrace(); 
+
+			} 
+
+			} 
+		
+	}
+
+	@Override
+	public void loginUser(String email, String pass) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
